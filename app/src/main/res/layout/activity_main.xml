@@ -74,6 +74,7 @@
                 android:text="Login"
                 android:textColor="#000000"
                 android:textSize="18sp" />
+
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
@@ -88,5 +89,47 @@
         android:layout_marginEnd="179dp"
         android:layout_marginBottom="80dp"
         android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/SignUptext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="178dp"
+        android:layout_marginEnd="172dp"
+        android:layout_marginBottom="53dp"
+        android:text="Sign Up"
+        android:textColor="#000000"
+        android:textSize="18sp" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/signUpButton"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_above="@id/SignUptext"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-37dp"
+        android:onClick="signIn"
+        app:cardBackgroundColor="#E91E63"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/SignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Sign Up"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
