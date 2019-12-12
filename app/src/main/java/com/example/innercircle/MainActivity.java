@@ -13,4 +13,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
+    public void onLoginClicked(View view) {
+
+        Intent my_intent = new Intent(getBaseContext(), FeedActivity.class);
+        startActivity(my_intent);
+    }
 }
