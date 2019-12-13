@@ -1,31 +1,54 @@
 package com.example.innercircle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SeekBar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 
-public class ProfileActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
-    MediaPlayer mediaPlayer;
+public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String SAVED_TEXT = "text";
+    private Button btnPlay,btnBack,btnFor;
+    private SeekBar seekBar;
+    private MediaPlayer mediaPlayer;
+    private Runnable runnable;
+    private Handler handler;
+
+    // MediaPlayer player;
+    private static final String SAVED_TEXT = "Hi I'm a senior at the University of Florida studying Digital Arts and Sciences!";
     private SharedPreferences sharedPrefs;
     private EditText editText;
 
+    FirebaseUser fbUser;
+    DatabaseReference database;
+    RecyclerView recyclerView;
+    RecyclerView.LayoutManager mLayoutManager;
+    ImageAdapter mAdapter;
+    ArrayList<Image> images = new ArrayList<>();
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
 
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         editText = findViewById(R.id.aboutText);
@@ -54,16 +77,13 @@ public class ProfileActivity extends AppCompatActivity {
                 return true;
             }
         });
-    }
+        btnPlay = findViewById(R.id.btnPlay);
+        btnBack = findViewById(R.id.btnBack);
+        btnFor = findViewById(R.id.btnFor);
+        handler = new Handler();
+        seekBar = findViewById(R.id.seekbar);
 
-    public void onPauseClicked (View view){
-        if (mediaPlayer != null) {
-            mediaPlayer.pause();
-        }
-    }
-
-    public void onPlayClicked (View view) {
-        if (mediaPlayer == null){
+        if (mediaPlayer == null) {
             mediaPlayer = MediaPlayer.create(this, R.raw.creativeminds);
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
@@ -73,11 +93,87 @@ public class ProfileActivity extends AppCompatActivity {
             });
         }
 
-        mediaPlayer.start();
+        btnFor.setOnClickListener((View.OnClickListener) this);
+        btnBack.setOnClickListener(this);
+        btnPlay.setOnClickListener(this);
+
+        if (mediaPlayer != null) {
+            mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mediaPlayer) {
+                    seekBar.setMax(mediaPlayer.getDuration());
+                    mediaPlayer.start();
+                    changeSeekbar();
+                }
+            });
+        }
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                if(b){
+                    mediaPlayer.seekTo(i);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+
     }
 
-    public void onStopClicked (View view) {
-        stopMediaPlayer();
+    private void changeSeekbar() {
+        if (mediaPlayer != null) {
+            seekBar.setProgress(mediaPlayer.getCurrentPosition());
+
+            if (mediaPlayer.isPlaying()) {
+                runnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        changeSeekbar();
+                    }
+                };
+                handler.postDelayed(runnable, 1000);
+            }
+        }
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (mediaPlayer != null) {
+            switch (view.getId()) {
+                case R.id.btnPlay:
+                    if (mediaPlayer.isPlaying()) {
+                        mediaPlayer.pause();
+                        btnPlay.setText(">");
+                    } else {
+                        mediaPlayer.start();
+                        btnPlay.setText("||");
+                        changeSeekbar();
+                    }
+                    break;
+                case R.id.btnFor:
+                    mediaPlayer.seekTo(mediaPlayer.getCurrentPosition() + 5000);
+                    break;
+                case R.id.btnBack:
+                    mediaPlayer.seekTo(mediaPlayer.getCurrentPosition() - 5000);
+                    break;
+            }
+        }
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 
     private void stopMediaPlayer(){
@@ -94,9 +190,9 @@ public class ProfileActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    @Override
     protected void onStop() {
         super.onStop();
+
         stopMediaPlayer();
     }
 }
