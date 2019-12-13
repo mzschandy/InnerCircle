@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="backgroundColor">#2B2828</color>
+    <color name="bottomNav">#2B2828</color>
+    <color name="seekBar">#8000BFF3</color>
 </resources>

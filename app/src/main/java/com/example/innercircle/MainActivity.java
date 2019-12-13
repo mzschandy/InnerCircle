@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, ActivityFeed.class);
             startActivity(intent);
         }
+
+
     }
 
     public void signIn(View view) {

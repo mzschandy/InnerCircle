@@ -12,11 +12,13 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -53,6 +55,32 @@ public class ActivityFeed extends AppCompatActivity {
         setContentView(R.layout.activity_feed);
 
         database = FirebaseDatabase.getInstance().getReference();
+
+        //bottom navigation
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+
+                    case R.id.nav_home:
+                        break;
+                    case R.id.nav_camera:
+                        Intent intent1 = new Intent(ActivityFeed.this, CameraActivity.class);
+                        startActivity(intent1);
+                        item.setChecked(true);
+                        break;
+                    case R.id.nav_profile:
+                        Intent intent2 = new Intent(ActivityFeed.this, ProfileActivity.class);
+                        startActivity(intent2);
+                        item.setChecked(true);
+                        break;
+                }
+
+                return true;
+
+            }
+        });
 
         // Setup the RecyclerView
         recyclerView = findViewById(R.id.recyclerView);
