@@ -1,85 +1,231 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#2B2828"
-    tools:context=".ProfileActivity">
+    tools:context="ProfileActivity">
 
-    <Button
-        android:id="@+id/pauseButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="161dp"
-        android:layout_marginTop="139dp"
-        android:layout_marginEnd="162dp"
-        android:layout_marginBottom="544dp"
-        android:onClick="onPauseClicked"
-        android:text="Pause"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/playButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="139dp"
-        android:layout_marginEnd="250dp"
-        android:layout_marginBottom="544dp"
-        android:onClick="onPlayClicked"
-        android:text="Play"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/btnPlay"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="0dp"
+            android:background="#00FFFFFF"
+            android:fontFamily="@font/gotham_bold"
+            android:text="||"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/stopButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="250dp"
-        android:layout_marginTop="139dp"
-        android:layout_marginBottom="544dp"
-        android:onClick="onStopClicked"
-        android:text="Stop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/btnFor"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="0dp"
+            android:layout_toRightOf="@id/btnPlay"
+            android:background="#00FFFFFF"
+            android:fontFamily="@font/gotham_bold"
+            android:text="&gt;&gt;"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="113dp"
-        android:layout_marginTop="300dp"
-        android:layout_marginEnd="260dp"
-        android:layout_marginBottom="450dp"
-        android:text="About"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.372"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@id/btnPlay"
+            android:background="#0000BFF3"
+            android:fontFamily="@font/gotham_bold"
+            android:text="&lt;&lt;"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp" />
 
-    <EditText
-        android:id="@+id/aboutText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="53dp"
-        android:layout_marginTop="300dp"
-        android:layout_marginEnd="145dp"
-        android:layout_marginBottom="379dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <SeekBar
+            android:id="@+id/seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="20dp"
+            android:background="@android:color/transparent" />
+
+        <ImageView
+            android:id="@+id/profilePic"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/profile_pic" />
+
+        <TextView
+            android:id="@+id/Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profilePic"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/gotham_bold"
+            android:text="jaymie.cons"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/view"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/gotham_bold"
+            android:text="41 \nFollowing"
+            android:textAlignment="center"
+            android:textColor="#C2C2C2" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView2"
+            android:layout_alignBottom="@+id/textView2"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="50dp"
+            android:layout_marginRight="17dp"
+            android:fontFamily="@font/gotham_bold"
+            android:text="41 \nFollowers"
+            android:textAlignment="center"
+            android:textColor="#C2C2C2" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView2"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/gotham_bold"
+            android:text="3 \nPosts"
+            android:textAlignment="center"
+            android:textColor="#C2C2C2" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="768dp"
+            android:layout_height="0.7dp"
+            android:layout_marginTop="290dp"
+            android:background="#000000" />
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="768dp"
+            android:layout_height="0.4dp"
+            android:layout_alignTop="@+id/view"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="150dp"
+            android:background="#000000" />
+
+        <TextView
+            android:id="@+id/About"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="13dp"
+            android:fontFamily="@font/gotham_bold"
+            android:text="About"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/aboutText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/About"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/Posts"
+            android:layout_width="wrap_content"
+            android:layout_height="23dp"
+            android:layout_above="@+id/pic1"
+            android:layout_below="@+id/About"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="125dp"
+            android:layout_marginEnd="330dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="59dp"
+            android:fontFamily="@font/gotham_bold"
+            android:text="Posts"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/pic1"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="9dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginBottom="80dp"
+            android:src="@drawable/pic1" />
+
+        <ImageView
+            android:id="@+id/pic2"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignTop="@+id/pic1"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="80dp"
+            android:src="@drawable/pic2" />
+
+        <ImageView
+            android:id="@+id/pic3"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignTop="@+id/pic2"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="9dp"
+            android:layout_marginBottom="80dp"
+            android:src="@drawable/pic3" />
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -89,9 +235,6 @@
         app:itemBackground="@color/bottomNav"
         app:itemIconTint="@android:color/white"
         app:itemTextColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_navigation" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

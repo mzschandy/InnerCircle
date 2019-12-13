@@ -1,5 +1,6 @@
 package com.example.innercircle;
 
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.auth.data.model.Resource;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -21,12 +23,15 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         public TextView mTextView;
         public ImageView mImageView;
         public Button mLikeButton;
+        public TextView mLikeText;
+        public Drawable drawable;
 
         public ViewHolder(View v) {
             super(v);
             mTextView = v.findViewById(R.id.textView2);
             mImageView = v.findViewById(R.id.imageView);
             mLikeButton = v.findViewById(R.id.likeButton);
+            mLikeText = v.findViewById(R.id.likeText);
         }
     }
 
@@ -56,11 +61,13 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
         }
         Picasso.get().load(image.downloadUrl).into(holder.mImageView);
 
-        holder.mLikeButton.setText("Like (" + image.likes + ")");
+        holder.mLikeText.setText(image.likes + " Likes");
         if(image.hasLiked) {
-            holder.mLikeButton.setBackgroundColor(mActivity.getResources().getColor(R.color.colorAccent));
+            //holder.mLikeButton.setBackgroundColor(mActivity.getResources().getColor(R.color.colorAccent));
+            holder.mLikeButton.setBackgroundResource(R.drawable.ic_favorite_red_24dp);
         } else {
-            holder.mLikeButton.setBackgroundColor(mActivity.getResources().getColor(R.color.colorPrimary));
+            //holder.mLikeButton.setBackgroundColor(mActivity.getResources().getColor(R.color.colorPrimary));
+            holder.mLikeButton.setBackgroundResource(R.drawable.ic_favorite_white_24dp);
         }
         holder.mLikeButton.setOnClickListener(new View.OnClickListener() {
             @Override
